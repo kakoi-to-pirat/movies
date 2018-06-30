@@ -9,7 +9,7 @@
 
 # The movies
 
-Справочника фильмов, отсортированный по тегам.
+Справочник фильмов, отсортированный по тегам.
 
 ## Запуск поректа
 
@@ -21,6 +21,12 @@ docker-compose up
 Проект будет доступен по адерсу:
 
 http://movies.localhost/
+
+Применение миграций:
+```
+docker exec -it movies-php-fpm sh
+php artisan migrate
+```
 
 phpMyadmin:
 
