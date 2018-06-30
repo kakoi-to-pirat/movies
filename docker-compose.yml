@@ -1,0 +1,42 @@
+version: "3.1"
+services:
+
+    webserver:
+      image: nginx:alpine
+      container_name: movies-webserver
+      working_dir: /application
+      volumes:
+          - .:/application
+          - ./docker/nginx/:/etc/nginx/conf.d/
+      ports:
+          - "80:80"
+
+    php-fpm:
+      build: docker/php-fpm
+      container_name: movies-php-fpm
+      working_dir: /application
+      volumes:
+        - .:/application
+        - ./docker/php-fpm/php-ini-overrides.ini:/etc/php/7.2/fpm/conf.d/99-overrides.ini
+
+    mariadb:
+      image: mariadb:10.3
+      container_name: movies-mariadb
+      volumes:
+        - ./docker/mariadb:/var/lib/mysql
+      environment:
+        MYSQL_ROOT_PASSWORD: qwerty
+      ports:
+        - "3306:3306"
+
+    phpmyadmin:
+      image: phpmyadmin/phpmyadmin
+      container_name: movies-phpmyadmin
+      links: 
+        - mariadb:db
+      ports:
+        - 8080:80
+      environment:
+        MYSQL_ROOT_PASSWORD: qwerty
+      depends_on:
+        - mariadb
