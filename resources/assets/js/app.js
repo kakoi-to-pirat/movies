@@ -20,3 +20,4 @@ Vue.component('vue-tags-input', require('./components/VueTagsInput.vue'));
 const app = new Vue({
     el: '#app'
 });
+

@@ -75,5 +75,8 @@
             @yield('content')
         </main>
     </div>
+    <script>
+       document.querySelector('optgroup[label="0"]').removeAttribute('label');
+    </script>
 </body>
 </html>

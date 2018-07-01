@@ -28,6 +28,7 @@
                    [ $tags ],
                    null,
                    [
+                       'class' => 'form-control',
                        'style' => 'width: 100%;',
                        'multiple' => 'multiple',
                        'data-placholder' => 'Вбирите теги'

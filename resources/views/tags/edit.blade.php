@@ -23,6 +23,7 @@
                    [ $films ],
                    $selectedFilms,
                    [
+                       'class' => 'form-control',
                        'style' => 'width: 100%; min-height: 180px;',
                        'multiple' => 'multiple',
                        'data-placholder' => 'Вбирите фильмы'
