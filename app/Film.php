@@ -56,10 +56,6 @@ class Film extends Model
      */
     public function setTags($ids): void
     {
-        if ($ids === null) {
-            return;
-        }
-
         $this->tags()->sync($ids);
     }
 

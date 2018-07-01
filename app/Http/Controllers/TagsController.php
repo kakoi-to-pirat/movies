@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Tag;
+use App\Film;
 use Illuminate\Http\Request;
 
 class TagsController extends Controller
@@ -40,8 +41,13 @@ class TagsController extends Controller
     public function edit($id)
     {
         $tags = Tag::find($id);
+        $films = Film::pluck('title', 'id')->all();
+        $selectedFilms = $tags->films->pluck('id')->all();
+
         return view('tags.edit', [
-            'tag' => $tags
+            'tag' => $tags,
+            'films' => $films,
+            'selectedFilms' => $selectedFilms
         ]);
     }
 
@@ -53,6 +59,7 @@ class TagsController extends Controller
 
         $tags = Tag::find($id);
         $tags->update($request->all());
+        $tags->setFilms($request->get('films'));
 
         return redirect()->route('tags.index');
     }
