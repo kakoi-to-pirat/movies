@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Tag;
+use App\Film;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use App\Film;
 
 class FilmsController extends Controller
 {
@@ -24,13 +25,18 @@ class FilmsController extends Controller
         $films = Film::all();
 
         return view('films.index', [
-            'films' => $films
+            'films' => $films,
+
         ]);
     }
 
     public function create()
     {
-        return view('films.create');
+        $tags = Tag::pluck('title', 'id')->all();
+
+        return view('films.create', [
+            'tags' => $tags
+        ]);
     }
 
     public function store(Request $request)
@@ -40,7 +46,8 @@ class FilmsController extends Controller
             'year' => 'required',
         ]);
 
-        Film::create($request->all());
+        $film = Film::add($request->all());
+        $film->setTags($request->get('tags'));
 
         return redirect()->route('films.index');
     }
@@ -48,8 +55,12 @@ class FilmsController extends Controller
     public function edit($id)
     {
         $film = Film::find($id);
+        $tags = Tag::pluck('title', 'id')->all();
+        $selectedTags = $film->tags->pluck('id')->all();
         return view('films.edit', [
-            'film' => $film
+            'film' => $film,
+            'tags' => $tags,
+            'selectedTags' => $selectedTags
         ]);
     }
 
@@ -62,6 +73,7 @@ class FilmsController extends Controller
 
         $film = Film::find($id);
         $film->update($request->all());
+        $film->setTags($request->get('tags'));
 
         return redirect()->route('films.index');
     }
@@ -69,6 +81,7 @@ class FilmsController extends Controller
     public function destroy($id)
     {
         Film::find($id)->delete();
+
         return redirect()->route('films.index');
     }
 }

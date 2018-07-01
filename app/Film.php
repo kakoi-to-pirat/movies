@@ -4,14 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property mixed tags
+ */
 class Film extends Model
 {
     protected $fillable = ['title', 'year'];
 
-    /**
-     * @return BelongsToMany
-     */
-    public function tags(): BelongsToMany
+    public function tags()
     {
         return $this->belongsToMany(
             Tag::class,
@@ -61,5 +61,16 @@ class Film extends Model
         }
 
         $this->tags()->sync($ids);
+    }
+
+    public function getTagsTitles()
+    {
+        $tagsTitles = $this->tags->pluck('title')->all();
+
+        if (!empty($tagsTitles)) {
+            return implode(', ', $tagsTitles);
+        };
+
+        return 'Нет тегов';
     }
 }
