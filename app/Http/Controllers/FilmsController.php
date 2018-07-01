@@ -22,11 +22,12 @@ class FilmsController extends Controller
 
     public function index()
     {
-        $films = Film::all();
+        $films = Film::get()->sortBy('title');
+        $tags = Tag::get()->sortBy('title');
 
         return view('films.index', [
             'films' => $films,
-
+            'tags' => $tags
         ]);
     }
 
@@ -44,6 +45,7 @@ class FilmsController extends Controller
         $this->validate($request, [
             'title' => 'required|unique:films|max:255',
             'year' => 'required',
+            'tags' => 'required'
         ]);
 
         $film = Film::add($request->all());
@@ -57,6 +59,7 @@ class FilmsController extends Controller
         $film = Film::find($id);
         $tags = Tag::pluck('title', 'id')->all();
         $selectedTags = $film->tags->pluck('id')->all();
+
         return view('films.edit', [
             'film' => $film,
             'tags' => $tags,
@@ -69,6 +72,7 @@ class FilmsController extends Controller
         $this->validate($request, [
             'title' => 'required|max:255',
             'year' => 'required',
+            'tags' => 'required'
         ]);
 
         $film = Film::find($id);

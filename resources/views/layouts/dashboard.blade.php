@@ -12,11 +12,11 @@
                                style="color: #212529; display: inline-block;"><h3>Фильмотека</h3></a>
                                 &nbsp;&nbsp;
                             <a href="{{ url('tags') }}"
-                               style="color: #212529; display: inline-block;"><h3>Тэги</h3></a>
+                               style="color: #212529; display: inline-block;"><h3>Теги</h3></a>
                         </div>
                         <div class="col-md-4" style="text-align: right">
                             <a class="btn btn-info" role="button" href="{{route('tags.create')}}"
-                               style="width: 48.5%; margin-top: 3px;">Добавить тэг</a>
+                               style="width: 48.5%; margin-top: 3px;">Добавить тег</a>
                             <a class="btn btn-info" role="button" href="{{route('films.create')}}"
                                style="width: 48.5%; margin-top: 3px;">Добавить фильм</a>
                         </div>
