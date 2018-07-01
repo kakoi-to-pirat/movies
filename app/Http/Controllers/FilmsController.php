@@ -18,6 +18,7 @@ class FilmsController extends Controller
         $this->middleware('auth');
     }
 
+
     public function index()
     {
         $films = Film::all();
@@ -35,7 +36,7 @@ class FilmsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required',
+            'title' => 'required|unique:films|max:255',
             'year' => 'required',
         ]);
 
@@ -55,7 +56,7 @@ class FilmsController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'title' => 'required',
+            'title' => 'required|max:255',
             'year' => 'required',
         ]);
 

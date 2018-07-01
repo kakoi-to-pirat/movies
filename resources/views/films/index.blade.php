@@ -1,6 +1,6 @@
-@extends('layouts.films')
+@extends('layouts.dashboard')
 
-@section('films')
+@section('products')
     @parent
 
     <h4>Комедия</h4>

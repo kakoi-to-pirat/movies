@@ -1,6 +1,6 @@
-@extends('layouts.films')
+@extends('layouts.dashboard')
 
-@section('films')
+@section('products')
     @parent
 
     <div class="row">
@@ -10,7 +10,6 @@
     </div>
 
     {!! Form::open(['route' => ['films.update', $film->id], 'method' => 'put']) !!}
-        @csrf
         <div class="row">
             <div class="form-group offset-md-2 col-md-8">
                 <label for="title">Название</label>
@@ -36,6 +35,6 @@
         </div>
     {!! Form::close() !!}
 
-    @include('films.errors');
+    @include('helpers.errors');
 
 @endsection
