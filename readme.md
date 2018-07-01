@@ -27,7 +27,3 @@ http://movies.localhost/
 docker exec -it movies-php-fpm sh
 php artisan migrate
 ```
-
-phpMyadmin:
-
-http://movies.localhost:8080

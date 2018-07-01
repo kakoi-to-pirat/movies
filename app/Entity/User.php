@@ -1,10 +1,14 @@
 <?php
 
-namespace App;
+namespace App\Entity;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+/**
+ * Class User
+ * @package App\Entity
+ */
 class User extends Authenticatable
 {
     use Notifiable;

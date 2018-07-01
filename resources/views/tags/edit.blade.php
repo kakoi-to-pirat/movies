@@ -20,10 +20,8 @@
             <div class="form-group offset-md-2 col-md-8">
                 {{Form::select(
                     'films[]',
-                   [
-                        $films
-                   ],
-                        $selectedFilms,
+                   [ $films ],
+                   $selectedFilms,
                    [
                        'style' => 'width: 100%; min-height: 180px;',
                        'multiple' => 'multiple',

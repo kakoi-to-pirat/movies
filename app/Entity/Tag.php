@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Entity;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -36,13 +36,13 @@ class Tag extends Model
     /**
      * @return string
      */
-    public function getFilmsTitles()
+    public function getFilmsTitles(): string
     {
         $filmsTitles = $this->films->pluck('title')->all();
 
         if (!empty($filmsTitles)) {
             return implode(', ', $filmsTitles);
-        };
+        }
 
         return 'Нет фильмов';
     }

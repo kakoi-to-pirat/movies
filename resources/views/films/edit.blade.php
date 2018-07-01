@@ -26,10 +26,8 @@
             <div class="form-group offset-md-2 col-md-8">
                 {{Form::select(
                     'tags[]',
-                   [
-                        $tags
-                   ],
-                        $selectedTags,
+                   [ $tags ],
+                   $selectedTags,
                    [
                        'style' => 'width: 100%; min-height: 180px;',
                        'multiple' => 'multiple',

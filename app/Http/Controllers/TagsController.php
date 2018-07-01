@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Tag;
-use App\Film;
+use App\Entity\Tag;
+use App\Entity\Film;
 use Illuminate\Http\Request;
 
 class TagsController extends Controller
@@ -22,11 +22,18 @@ class TagsController extends Controller
         ]);
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function create()
     {
         return view('tags.create');
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -38,6 +45,10 @@ class TagsController extends Controller
         return redirect()->route('tags.index');
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function edit($id)
     {
         $tags = Tag::find($id);
@@ -51,6 +62,11 @@ class TagsController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(Request $request, $id)
     {
         $this->validate($request, [
@@ -64,6 +80,10 @@ class TagsController extends Controller
         return redirect()->route('tags.index');
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destroy($id)
     {
         Tag::find($id)->delete();

@@ -1,8 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Entity;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+
 
 /**
  * @property mixed tags
@@ -11,7 +13,10 @@ class Film extends Model
 {
     protected $fillable = ['title', 'year'];
 
-    public function tags()
+    /**
+     * @return BelongsToMany
+     */
+    public function tags(): BelongsToMany
     {
         return $this->belongsToMany(
             Tag::class,
@@ -25,7 +30,7 @@ class Film extends Model
      * @param $fields
      * @return static
      */
-    public static function add($fields): object
+    public static function add($fields): ?film
     {
         $film = new static;
         $film->fill($fields);
@@ -59,14 +64,17 @@ class Film extends Model
         $this->tags()->sync($ids);
     }
 
-    public function getTagsTitles()
+    /**
+     * @return string
+     */
+    public function getTagsTitles(): ?string
     {
         $tagsTitles = $this->tags->pluck('title')->all();
 
         if (!empty($tagsTitles)) {
             return implode(', ', $tagsTitles);
-        };
+        }
 
-        return 'Нет тегов';
+        return null;
     }
 }
