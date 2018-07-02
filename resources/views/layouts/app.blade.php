@@ -76,7 +76,10 @@
         </main>
     </div>
     <script>
-       document.querySelector('optgroup[label="0"]').removeAttribute('label');
+      const optgroup = document.querySelector('optgroup[label="0"]');
+      if (optgroup) {
+        optgroup.removeAttribute('label')
+      }
     </script>
 </body>
 </html>

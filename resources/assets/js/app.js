@@ -15,9 +15,10 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('vue-tags-input', require('./components/VueTagsInput.vue'));
+Vue.component('tags-input', require('./components/TagsInput.vue'));
 
 const app = new Vue({
     el: '#app'
 });
+
 

@@ -23,13 +23,13 @@
             </div>
         </div>
         <div class="row">
-            <div class="form-group offset-md-2 col-md-8">
+            <div class="form-group offset-md-2 col-md-8" style="min-height: 180px;">
                 {{Form::select('tags[]',
                    [ $tags ],
                    null,
                    [
                        'class' => 'form-control',
-                       'style' => 'width: 100%;',
+                       'style' => 'width: 100%; min-height: 180px;',
                        'multiple' => 'multiple',
                        'data-placholder' => 'Вбирите теги'
                     ]

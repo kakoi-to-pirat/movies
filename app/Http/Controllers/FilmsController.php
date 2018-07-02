@@ -110,4 +110,24 @@ class FilmsController extends Controller
 
         return redirect()->route('films.index');
     }
+
+    /**
+     * @param Request $request
+     * @return Response|null
+     */
+    public function getFilmTags(Request $request)
+    {
+        if (!$request->get('filmId')) {
+            return redirect()->route('films.index');
+        }
+
+        $film = Film::find($request->get('filmId'));
+        $selectedTags = $film->tags->pluck('title', 'id')->all();
+
+        if (!empty($selectedTags)) {
+            return $selectedTags;
+        }
+
+        return null;
+    }
 }
